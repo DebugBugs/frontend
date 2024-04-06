@@ -1,7 +1,15 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Colors from "../../../utils/Colors";
 import { Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
+import { router } from "expo-router";
 
 const Statistics = () => {
   return (
@@ -191,6 +199,7 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 24,
   },
+
   goal: {},
   stats: {
     marginTop: 30,

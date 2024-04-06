@@ -5,48 +5,75 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  ScrollView,
+  Image,
+  Alert,
 } from "react-native";
+import Colors from "../../../utils/Colors";
 
 // Each item card on the shop screen.
-const ItemCard = ({ name }) => (
+const ItemCard = ({ item }) => (
   <View style={styles.itemContainer}>
-    <Text style={styles.itemName}>{name}</Text>
-    <TouchableOpacity style={styles.buyButton}>
-      <Text style={styles.buyButtonText}>Buy Now</Text>
-    </TouchableOpacity>
+    <Image
+      style={{ width: 60, height: 60, marginLeft: 25 }}
+      source={require("../../../assets/coupon.jpeg")}
+    ></Image>
+    <View>
+      <Text style={styles.itemName}>{item.name}</Text>
+      <Text
+        style={{ marginBottom: 5, fontSize: 8 }}
+      >{`${item.price} coins`}</Text>
+      <TouchableOpacity style={styles.buyButton} onPress={createTwoButtonAlert}>
+        <Text style={styles.buyButtonText}>Buy Now</Text>
+      </TouchableOpacity>
+    </View>
   </View>
 );
+
+const createTwoButtonAlert = () =>
+  Alert.alert("Confirmation", "Are you sure you want to buy this product?", [
+    {
+      text: "Cancel",
+      onPress: () => console.log("Cancel Pressed"),
+      style: "cancel",
+    },
+    { text: "OK", onPress: () => console.log("OK Pressed") },
+  ]);
+
+const items = [
+  { name: "50% Discount Fairprice Coupon", price: 50 },
+  { name: "$10 Dollar Voucher Seoul Garden", price: 30 },
+  { name: "Capita 30% off Coupon", price: 90 },
+  { name: "$4 dollar voucher 8 degrees", price: 30 },
+  { name: "50% Discount Fairprice Coupon", price: 50 },
+  { name: "$10 Dollar Voucher Seoul Garden", price: 30 },
+  { name: "Capita 30% off Coupon", price: 90 },
+  { name: "$4 dollar voucher 8 degrees", price: 30 },
+  { name: "50% Discount Fairprice Coupon", price: 50 },
+  { name: "$10 Dollar Voucher Seoul Garden", price: 30 },
+  { name: "Capita 30% off Coupon", price: 90 },
+  { name: "$4 dollar voucher 8 degrees", price: 30 },
+];
 
 // The main shop screen component.
 const Shop = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.heartContainer}>
-          <Text style={styles.heartText}>9999</Text>
-          {/* Placeholder for heart icon */}
-        </View>
-        <View style={styles.energyBar}>
-          <View style={styles.energyFill}></View>
-          {/* Dynamic fill for energy bar */}
-        </View>
-        <View style={styles.badgePlaceholder}>
-          {/* Placeholder for badge */}
-        </View>
-      </View>
-      <FlatList
-        data={data}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <ItemCard name={item.name} />}
-      />
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text
+        style={{ fontWeight: "800", color: Colors.SECONDARY, fontSize: 30 }}
+      >
+        Shop
+      </Text>
+      {items.map((item) => (
+        <ItemCard item={item}></ItemCard>
+      ))}
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#ffffff", // Assuming a white background for the shop.
+    padding: 20,
   },
   header: {
     flexDirection: "row",
@@ -54,12 +81,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 16,
   },
-  heartContainer: {
-    // Define styles for the heart container if needed.
-  },
-  heartText: {
-    // Define styles for the text next to the heart icon if needed.
-  },
+
   energyBar: {
     flex: 1,
     height: 20,
@@ -80,21 +102,27 @@ const styles = StyleSheet.create({
     backgroundColor: "#ccc",
   },
   itemContainer: {
-    backgroundColor: "#f0f0f0",
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor: "#ffffff",
     borderRadius: 10,
     padding: 16,
     margin: 16,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-between",
   },
   itemName: {
     marginBottom: 8,
+    fontSize: 10,
+    width: 170,
     // Add style for item name text.
   },
+
   buyButton: {
     backgroundColor: "turquoise",
     padding: 10,
     borderRadius: 5,
+    width: "100",
   },
   buyButtonText: {
     color: "white",
