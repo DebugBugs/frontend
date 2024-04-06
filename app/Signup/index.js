@@ -24,17 +24,7 @@ export default Signup = () => {
   return (
     <View style={styles.container}>
       <View style={styles.subcontainer}>
-        <Text
-          style={{
-            textAlign: "center",
-            paddingTop: 30,
-            fontSize: 30,
-            marginBottom: 50,
-            color: Colors.WHITE,
-          }}
-        >
-          Create your account
-        </Text>
+        <Text style={styles.title}>Create your account</Text>
         <Text style={{ width: 230, color: Colors.GREY }}>Username</Text>
         <TextInput
           style={styles.textinput}
@@ -45,9 +35,13 @@ export default Signup = () => {
           style={styles.textinput}
           onChangeText={(p) => setPassword(p)}
         ></TextInput>
-        <Link style={{ marginTop: 10, marginBottom: 20 }} href={"/Dashboard"}>
+        <TouchableOpacity
+          style={{ marginTop: 10, marginBottom: 20 }}
+          onPress={() => router.navigate("/Login")}
+        >
           <Text>Already have an account? Login!</Text>
-        </Link>
+        </TouchableOpacity>
+
         <TouchableOpacity onPress={handleSignup} style={styles.confirm}>
           <Text
             style={{
@@ -55,7 +49,7 @@ export default Signup = () => {
               fontSize: 24,
               color: Colors.GREY,
               textAlign: "center",
-              fontWeight: "800",
+              fontWeight: 800,
             }}
           >
             Next
@@ -67,6 +61,14 @@ export default Signup = () => {
 };
 
 const styles = StyleSheet.create({
+  title: {
+    textAlign: "center",
+    paddingTop: 30,
+    fontSize: 30,
+    marginBottom: 20,
+    color: Colors.WHITE,
+    fontWeight: "900",
+  },
   container: {
     backgroundColor: Colors.PRIMARY,
     width: "100%",

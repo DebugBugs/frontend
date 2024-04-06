@@ -1,7 +1,13 @@
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  TextInput,
+} from "react-native";
 import Colors from "../../utils/Colors";
-import { TextInput } from "react-native-web";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import postLogin from "../../utils/postLogin";
 import { useState } from "react";
 
@@ -22,7 +28,8 @@ export default Login = () => {
             textAlign: "center",
             paddingTop: 30,
             fontSize: 30,
-            marginBottom: 50,
+            marginBottom: 20,
+            fontWeight: "900",
             color: Colors.WHITE,
           }}
         >
@@ -32,9 +39,12 @@ export default Login = () => {
         <TextInput style={styles.textinput}></TextInput>
         <Text style={{ width: 230, color: Colors.GREY }}>Password</Text>
         <TextInput style={styles.textinput}></TextInput>
-        <Link style={{ marginTop: 10, marginBottom: 20 }} href={"/Signup"}>
-          <Text>Don't have an account? Sign up!</Text>
-        </Link>
+        <TouchableOpacity
+          style={{ marginTop: 10, marginBottom: 20 }}
+          onPress={() => router.navigate("/Signup")}
+        >
+          <Text>Don't have an account? Signup!</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPressed={handleLogin} style={styles.confirm}>
           <Text
             style={{

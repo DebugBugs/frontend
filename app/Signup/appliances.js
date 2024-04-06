@@ -34,8 +34,10 @@ export default Appliances = () => {
             textAlign: "center",
             paddingTop: 30,
             fontSize: 30,
-            marginBottom: 50,
+            marginBottom: 20,
+            fontWeight: "900",
             color: Colors.WHITE,
+            width: 230,
           }}
         >
           List appliances you use!

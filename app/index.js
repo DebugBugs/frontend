@@ -15,7 +15,7 @@ const IndexPage = () => {
       <View style={styles.subcontainer}>
         <Text style={styles.introtext}>
           Battle with your neighbours to{" "}
-          <Text style={{ fontWeight: "700" }}>conserve the most energy!</Text>
+          <Text style={styles.energy}>conserve the most energy!</Text>
         </Text>
         <Text style={styles.victory}>
           Ready to claim your victory in Viridis?
@@ -32,6 +32,9 @@ const IndexPage = () => {
 };
 
 const styles = StyleSheet.create({
+  energy: {
+    fontWeight: "700",
+  },
   container: {
     height: "100%",
   },
