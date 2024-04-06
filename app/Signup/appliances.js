@@ -12,7 +12,6 @@ import {
 import Colors from "../../utils/Colors";
 import { useState } from "react";
 import postAppliances from "../../utils/postAppliances";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default Appliances = () => {
   const [aircon, setAircon] = useState(false);
@@ -20,13 +19,7 @@ export default Appliances = () => {
   const [fridge, setFridge] = useState(false);
   const [others, setOthers] = useState("");
   const handleAppliances = () => {
-    postAppliances(
-      AsyncStorage.getItem("username"),
-      aircon,
-      laundry,
-      fridge,
-      others
-    );
+    postAppliances(aircon, laundry, fridge, others);
     router.navigate("/Dashboard");
   };
   return (

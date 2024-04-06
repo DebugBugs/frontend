@@ -22,7 +22,7 @@ export default postLogin = (username, password, setIncorrect) => {
     })
     .then((data) => {
       AsyncStorage.setItem("username", JSON.stringify(data.user.username));
-      AsyncStorage.setItem("user_id", data.user.id);
+      AsyncStorage.setItem("user_id", data.user.id.toString());
       AsyncStorage.setItem("token", data.token);
     });
 };

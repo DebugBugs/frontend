@@ -1,4 +1,10 @@
-import { View, StyleSheet, ScrollView } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Text,
+} from "react-native";
 import CardView from "../../../components/CardView";
 import HealthContainer from "../../../components/HealthContainer";
 import GemContainer from "../../../components/GemContainer";
@@ -7,6 +13,8 @@ import Colors from "../../../utils/Colors";
 import NavBar from "../../../components/NavBar";
 import getUsername from "../../../utils/getUsername";
 import { useState } from "react";
+import getUser from "../../../utils/getUser";
+import getGoals from "../../../utils/getGoals";
 
 const Graph = () => {
   const chartConfig = {
@@ -49,9 +57,10 @@ const Home = (props) => {
   const [userName, setUsername] = useState("...");
   getUsername(setUsername);
   const profileImg = "./assets/user.png";
-  const Health = 99;
-  const Gems = 1000;
-
+  const [Goals, setGoals] = useState([]);
+  const [Health, setHealth] = useState(99);
+  const [Gems, setGems] = useState(1000);
+  getUser(setHealth, setGems);
   const leaderboard = [
     {
       userName: "Name1",
@@ -96,6 +105,9 @@ const Home = (props) => {
         </CardView>
 
         <CardView title="Featured Items"></CardView>
+        <TouchableOpacity onPress={getGoals}>
+          <Text style={{ width: 500 }}>Hello</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
