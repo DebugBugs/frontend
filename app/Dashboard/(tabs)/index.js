@@ -1,11 +1,4 @@
 import {
-  View,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Text,
-} from "react-native";
-import {
   Text,
   View,
   StyleSheet,
