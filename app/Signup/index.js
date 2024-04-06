@@ -1,9 +1,11 @@
 import {
   Button,
+  Keyboard,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
   View,
 } from "react-native";
 import Colors from "../../utils/Colors";
@@ -22,41 +24,45 @@ export default Signup = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.subcontainer}>
-        <Text style={styles.title}>Create your account</Text>
-        <Text style={{ width: 230, color: Colors.GREY }}>Username</Text>
-        <TextInput
-          style={styles.textinput}
-          onChangeText={(u) => setUsername(u)}
-        ></TextInput>
-        <Text style={{ width: 230, color: Colors.GREY }}>Password</Text>
-        <TextInput
-          style={styles.textinput}
-          onChangeText={(p) => setPassword(p)}
-        ></TextInput>
-        <TouchableOpacity
-          style={{ marginTop: 10, marginBottom: 20 }}
-          onPress={() => router.navigate("/Login")}
-        >
-          <Text>Already have an account? Login!</Text>
-        </TouchableOpacity>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={styles.container}>
+        <View style={styles.subcontainer}>
+          <Text style={styles.title}>Create your account</Text>
+          <Text style={{ width: 230, color: Colors.GREY }}>Username</Text>
 
-        <TouchableOpacity onPress={handleSignup} style={styles.confirm}>
-          <Text
-            style={{
-              width: 230,
-              fontSize: 24,
-              color: Colors.GREY,
-              textAlign: "center",
-              fontWeight: 800,
-            }}
+          <TextInput
+            style={styles.textinput}
+            onChangeText={(u) => setUsername(u)}
+          ></TextInput>
+
+          <Text style={{ width: 230, color: Colors.GREY }}>Password</Text>
+          <TextInput
+            style={styles.textinput}
+            onChangeText={(p) => setPassword(p)}
+          ></TextInput>
+          <TouchableOpacity
+            style={{ marginTop: 10, marginBottom: 20 }}
+            onPress={() => router.navigate("/Login")}
           >
-            Next
-          </Text>
-        </TouchableOpacity>
+            <Text>Already have an account? Login!</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={handleSignup} style={styles.confirm}>
+            <Text
+              style={{
+                width: 230,
+                fontSize: 24,
+                color: Colors.GREY,
+                textAlign: "center",
+                fontWeight: 800,
+              }}
+            >
+              Next
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 

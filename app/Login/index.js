@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
   View,
   TextInput,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 import Colors from "../../utils/Colors";
 import { Link, router } from "expo-router";
@@ -21,45 +23,47 @@ export default Login = () => {
     router.navigate("/home");
   };
   return (
-    <View style={styles.container}>
-      <View style={styles.subcontainer}>
-        <Text
-          style={{
-            textAlign: "center",
-            paddingTop: 30,
-            fontSize: 30,
-            marginBottom: 20,
-            fontWeight: "900",
-            color: Colors.WHITE,
-          }}
-        >
-          Login to your account
-        </Text>
-        <Text style={{ width: 230, color: Colors.GREY }}>Username</Text>
-        <TextInput style={styles.textinput}></TextInput>
-        <Text style={{ width: 230, color: Colors.GREY }}>Password</Text>
-        <TextInput style={styles.textinput}></TextInput>
-        <TouchableOpacity
-          style={{ marginTop: 10, marginBottom: 20 }}
-          onPress={() => router.navigate("/Signup")}
-        >
-          <Text>Don't have an account? Signup!</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPressed={handleLogin} style={styles.confirm}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={styles.container}>
+        <View style={styles.subcontainer}>
           <Text
             style={{
-              width: 230,
-              fontSize: 24,
-              color: Colors.GREY,
               textAlign: "center",
-              fontWeight: "800",
+              paddingTop: 30,
+              fontSize: 30,
+              marginBottom: 20,
+              fontWeight: "900",
+              color: Colors.WHITE,
             }}
           >
-            Log In
+            Login to your account
           </Text>
-        </TouchableOpacity>
+          <Text style={{ width: 230, color: Colors.GREY }}>Username</Text>
+          <TextInput style={styles.textinput}></TextInput>
+          <Text style={{ width: 230, color: Colors.GREY }}>Password</Text>
+          <TextInput style={styles.textinput}></TextInput>
+          <TouchableOpacity
+            style={{ marginTop: 10, marginBottom: 20 }}
+            onPress={() => router.navigate("/Signup")}
+          >
+            <Text>Don't have an account? Signup!</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPressed={handleLogin} style={styles.confirm}>
+            <Text
+              style={{
+                width: 230,
+                fontSize: 24,
+                color: Colors.GREY,
+                textAlign: "center",
+                fontWeight: "800",
+              }}
+            >
+              Log In
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };
 
