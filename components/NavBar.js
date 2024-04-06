@@ -1,41 +1,50 @@
-// import {useStyles, createStyleSheet} from 'styles';
-// import {View, Image} from 'react-native';
-// import ellipse1 from 'assets/images/ellipse1.png';
-// import home from 'assets/images/home.png';
-// import map from 'assets/images/map.png';
-// import shoppingBag from 'assets/images/shoppingBag.png';
-// import user from 'assets/images/user.png';
+import { View, Image, TouchableOpacity, StyleSheet } from "react-native";
+import homeIcon from "../assets/home.png";
+import mapIcon from "../assets/map.png";
+import shoppingBagIcon from "../assets/shoppingBag.png";
+import userIcon from "../assets/user.png";
 
-// export interface NavBarProps {
-//   testID?: string,
-// }
+export default function NavBar(props) {
+  return (
+    <View style={styles.root} testID={props.testID}>
+      <View style={styles.navBarBackground} testID="12:125" />
+      <TouchableOpacity onPress={() => console.log("hi home")}>
+        <Image source={homeIcon} style={styles.icon} resizeMode="contain" />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => console.log("hi map")}>
+        <Image source={mapIcon} style={styles.icon} resizeMode="contain" />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => console.log("hi shop")}>
+        <Image
+          source={shoppingBagIcon}
+          style={styles.icon}
+          resizeMode="contain"
+        />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => console.log("hi user")}>
+        <Image source={userIcon} style={styles.icon} resizeMode="contain" />
+      </TouchableOpacity>
+    </View>
+  );
+}
 
-// export function NavBar() {
-//   const {styles, theme} = useStyles(stylesheet);
-
-//   return (
-//     <View style={styles.navBar} testID={props.testID}>
-//       <View style={styles.rectangle4} testID="12:125"/>
-//       <Image source={{uri: ellipse1}} style={{width: 41, height: 41}} resizeMode="cover"/>
-//       <Image source={{uri: home}} style={{width: 20, height: 20}} resizeMode="cover"/>
-//       <Image source={{uri: user}} style={{width: 20, height: 20}} resizeMode="cover"/>
-//       <Image source={{uri: shoppingBag}} style={{width: 20, height: 20}} resizeMode="cover"/>
-//       <Image source={{uri: map}} style={{width: 20, height: 20}} resizeMode="cover"/>
-//     </View>
-//   );
-// }
-
-// const stylesheet = createStyleSheet(theme => ({
-//   root: {
-//     width: 393,
-//     height: 53,
-//     flexShrink: 0,
-//   },
-//   rectangle4: {
-//     width: 393,
-//     height: 53,
-//     flexShrink: 0,
-//     backgroundColor: 'rgba(240, 240, 240, 1)',
-//   },
-// }));
-
+const styles = StyleSheet.create({
+  root: {
+    flexDirection: "row", // Arrange items horizontally
+    justifyContent: "space-around", // Evenly distribute space between icons
+    alignItems: "center", // Center items vertically
+    width: "100%", // Take full width of the screen
+    height: 53, // Height of the navbar
+    position: "absolute", // Position over the content
+    bottom: 0, // Align to the bottom of the screen
+    backgroundColor: "rgba(240, 240, 240, 1)", // Background color of the navbar
+  },
+  navBarBackground: {
+    ...StyleSheet.absoluteFillObject, // Stretch to fill parent
+    backgroundColor: "rgba(240, 240, 240, 1)", // Background color
+  },
+  icon: {
+    width: 25, // Width of the icon
+    height: 25, // Height of the icon
+  },
+});
