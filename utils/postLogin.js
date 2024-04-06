@@ -1,6 +1,7 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { URL_NAME } from "../config";
 
-export default postLogin = (username, password) => {
+export default postLogin = (username, password, setIncorrect) => {
   return fetch(`${URL_NAME}/login`, {
     method: "POST",
     headers: {
@@ -15,12 +16,13 @@ export default postLogin = (username, password) => {
   })
     .then((response) => {
       if (response.status === 422) {
-        return "Password incorrect";
+        setIncorrect(true);
       }
       return response.json();
     })
     .then((data) => {
-      localStorage.setItem("username", data.user.username);
-      localStorage.setItem("token", data.token);
+      AsyncStorage.setItem("username", JSON.stringify(data.user.username));
+      AsyncStorage.setItem("user_id", data.user.id);
+      AsyncStorage.setItem("token", data.token);
     });
 };

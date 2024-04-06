@@ -1,5 +1,5 @@
-const onLocalComputer = true;
-const onRenderDeploy = false;
+const onLocalComputer = false;
+const onRenderDeploy = true;
 
 //exporting URL for the backend, which is used for fetching data
 let URL_NAME = "";
@@ -8,6 +8,6 @@ if (onLocalComputer) {
 }
 
 if (onRenderDeploy) {
-  URL_NAME = "https://nusgrapevine.onrender.com";
+  URL_NAME = "https://viridis.onrender.com";
 }
 export { URL_NAME };

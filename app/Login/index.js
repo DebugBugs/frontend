@@ -16,11 +16,11 @@ import { useState } from "react";
 export default Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [incorrect, setIncorrect] = useState(false);
   const handleLogin = async () => {
-    const res = postLogin(username, password);
-    if (res === "Password incorrect") {
-    }
-    router.navigate("/home");
+    await postLogin(username, password, setIncorrect);
+
+    router.navigate("/Dashboard");
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -39,8 +39,16 @@ export default Login = () => {
             Login to your account
           </Text>
           <Text style={{ width: 230, color: Colors.GREY }}>Username</Text>
-          <TextInput style={styles.textinput}></TextInput>
-          <Text style={{ width: 230, color: Colors.GREY }}>Password</Text>
+          <TextInput
+            style={styles.textinput}
+            onChangeText={(u) => setUsername(u)}
+          ></TextInput>
+          <Text
+            style={{ width: 230, color: Colors.GREY }}
+            onChangeText={(p) => setPassword(p)}
+          >
+            Password {incorrect && "incorrect!"}
+          </Text>
           <TextInput style={styles.textinput}></TextInput>
           <TouchableOpacity
             style={{ marginTop: 10, marginBottom: 20 }}
@@ -48,7 +56,7 @@ export default Login = () => {
           >
             <Text>Don't have an account? Signup!</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPressed={handleLogin} style={styles.confirm}>
+          <TouchableOpacity onPress={handleLogin} style={styles.confirm}>
             <Text
               style={{
                 width: 230,

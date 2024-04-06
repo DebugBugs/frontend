@@ -16,10 +16,9 @@ import postSignup from "../../utils/postSignup";
 export default Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const handleSignup = () => {
-    // const res = postSignup(username, password);
-    // if (res === "Username already taken") {
-    // }
+  const [usernameTaken, setUsernameTaken] = useState(false);
+  const handleSignup = async () => {
+    const res = await postSignup(username, password, setUsernameTaken);
     router.replace("/Signup/appliances");
   };
 
@@ -28,7 +27,9 @@ export default Signup = () => {
       <View style={styles.container}>
         <View style={styles.subcontainer}>
           <Text style={styles.title}>Create your account</Text>
-          <Text style={{ width: 230, color: Colors.GREY }}>Username</Text>
+          <Text style={{ width: 230, color: Colors.GREY }}>
+            Username {usernameTaken && "Already Taken!"}
+          </Text>
 
           <TextInput
             style={styles.textinput}

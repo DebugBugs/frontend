@@ -1,7 +1,8 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { URL_NAME } from "../config";
 
-export default postSignup = (username, password) => {
-  return fetch(`${URL_NAME}/users`, {
+export default postSignup = (username, password, setUsernameTaken) => {
+  return fetch(`${URL_NAME}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -9,18 +10,19 @@ export default postSignup = (username, password) => {
     body: JSON.stringify({
       user: {
         username: username,
-        password: password,
+        password: password.toString(),
       },
     }),
   })
     .then((res) => {
       if (res.status === 422) {
-        return "Username already taken";
+        setUsernameTaken(true);
       }
       return res.json();
     })
     .then((data) => {
-      localStorage.setItem("username", data.user.username);
-      localStorea.setItem("token", data.token);
+      AsyncStorage.setItem("username", data.user.username);
+      AsyncStorage.setItem("user_id", data.user.id.toString());
+      AsyncStorage.setItem("token", data.token);
     });
 };

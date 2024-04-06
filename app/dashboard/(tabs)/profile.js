@@ -10,6 +10,9 @@ import Colors from "../../../utils/Colors";
 import { Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { router } from "expo-router";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useEffect, useState } from "react";
+import getUsername from "../../../utils/getUsername";
 
 const Statistics = () => {
   return (
@@ -168,6 +171,8 @@ const PastAchievements = () => {
 };
 
 export default Profile = () => {
+  const [username, setUsername] = useState("...");
+  getUsername(setUsername);
   return (
     <ScrollView contentContainerStyle={styles.scroll}>
       <View>
@@ -176,7 +181,7 @@ export default Profile = () => {
           source={require("../../../assets/user.png")}
         />
       </View>
-      <Text style={styles.username}>Username</Text>
+      <Text style={styles.username}>{username}</Text>
       <Statistics />
       <PastAchievements />
       <Graph />

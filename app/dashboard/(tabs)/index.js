@@ -5,6 +5,8 @@ import GemContainer from "../../../components/GemContainer";
 import { LineChart } from "react-native-chart-kit";
 import Colors from "../../../utils/Colors";
 import NavBar from "../../../components/NavBar";
+import getUsername from "../../../utils/getUsername";
+import { useState } from "react";
 
 const Graph = () => {
   const chartConfig = {
@@ -44,7 +46,8 @@ const Home = (props) => {
   // const Health = String(props.Health)
   // const Gems = String(props.Gems)
 
-  const userName = "Jon";
+  const [userName, setUsername] = useState("...");
+  getUsername(setUsername);
   const profileImg = "./assets/user.png";
   const Health = 99;
   const Gems = 1000;
@@ -93,7 +96,6 @@ const Home = (props) => {
         </CardView>
 
         <CardView title="Featured Items"></CardView>
-
       </View>
     </ScrollView>
   );
