@@ -1,9 +1,13 @@
 import { Text, View, StyleSheet, Image } from "react-native";
+import { useState } from "react";
 import MapView, { Marker } from "react-native-maps";
 import Colors from "../../../utils/Colors";
 import TopBar from "../../../components/TopBar";
+import getUsername from "../../../utils/getUsername";
 
 export default LeaderBoard = () => {
+  const [userName, setUsername] = useState("...");
+  getUsername(setUsername);
   return (
     <View>
       <TopBar />
@@ -22,7 +26,7 @@ export default LeaderBoard = () => {
             latitude: userCoordinate.lat,
             longitude: userCoordinate.long,
           }}
-          title={"Test Marker"}
+          title={userName}
           description={"This is a description of the marker"}
         >
           <Image source={require("../../../assets/userPin.png")} />

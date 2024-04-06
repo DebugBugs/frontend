@@ -5,12 +5,20 @@ import {
   TouchableOpacity,
   Text,
 } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  ScrollView,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+} from "react-native";
 import CardView from "../../../components/CardView";
 import HealthContainer from "../../../components/HealthContainer";
 import GemContainer from "../../../components/GemContainer";
 import { LineChart } from "react-native-chart-kit";
 import Colors from "../../../utils/Colors";
-import NavBar from "../../../components/NavBar";
 import getUsername from "../../../utils/getUsername";
 import { useState } from "react";
 import getUser from "../../../utils/getUser";
@@ -29,7 +37,7 @@ const Graph = () => {
     datasets: [
       {
         data: [20, 45, 28, 80, 99, 43],
-        color: (opacity = 1) => `rgba(217, 57, 43, ${opacity})`, // optional
+        color: () => Colors.D_PRIMARY, // optional
         strokeWidth: 2, // optional
       },
     ],
@@ -37,11 +45,11 @@ const Graph = () => {
   };
 
   return (
-    <View style={{ alignItems: "center" }}>
+    <View style={{ alignItems: "center", width: "100%" }}>
       <LineChart
         backgroundColor={Colors.PRIMARY}
         data={data}
-        width={600}
+        width={Dimensions.get("window").width - 27}
         height={220}
         chartConfig={chartConfig}
       />
@@ -49,13 +57,21 @@ const Graph = () => {
   );
 };
 
+const initalGoals = [
+  { id: 1, goal: "Switch to energy-efficient LED light bulbs" },
+  { id: 2, goal: "Use natural lighting whenever possible" },
+  { id: 3, goal: "Unplug electronics when not in use" },
+  { id: 4, goal: "Install a programmable thermostat" },
+  { id: 5, goal: "Seal gaps and cracks in doors and windows" },
+];
+
 const Home = (props) => {
   // const userName = String(props.username)
   // const Health = String(props.Health)
   // const Gems = String(props.Gems)
 
   const [userName, setUsername] = useState("...");
-  getUsername(setUsername);
+  // getUsername(setUsername);
   const profileImg = "./assets/user.png";
   const [Goals, setGoals] = useState([]);
   const [Health, setHealth] = useState(99);
@@ -98,16 +114,32 @@ const Home = (props) => {
           <GemContainer Gems={Gems}></GemContainer>
         </CardView>
 
-        <CardView title={"Leaderboard"}></CardView>
+        <CardView title="Goals">
+          {goals.length > 0 ? (
+            goals.map((goal) => (
+              <View style={styles.goalItem} key={goal.id}>
+                <Text style={styles.goalText}>{goal.goal}</Text>
+                <TouchableOpacity
+                  style={styles.goalCompleteBtn}
+                  onPress={() => {
+                    setGoals(goals.filter((a) => a.id !== goal.id));
+                  }}
+                >
+                  <Image
+                    source={require("../../../assets/cross.png")}
+                    style={styles.goalDelete}
+                  />
+                </TouchableOpacity>
+              </View>
+            ))
+          ) : (
+            <Text style>No Goal yet!</Text>
+          )}
+        </CardView>
 
         <CardView title={"Energy Usage"}>
           <Graph style={{ width: "100%" }} />
         </CardView>
-
-        <CardView title="Featured Items"></CardView>
-        <TouchableOpacity onPress={getGoals}>
-          <Text style={{ width: 500 }}>Hello</Text>
-        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -116,6 +148,20 @@ const Home = (props) => {
 const styles = StyleSheet.create({
   homeContainer: {
     padding: 15,
+  },
+  goalItem: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  goalCompleteBtn: {},
+  goalText: {
+    width: "90%",
+  },
+  goalDelete: {
+    width: 20,
+    height: 20,
   },
 });
 

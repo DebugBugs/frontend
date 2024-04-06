@@ -18,10 +18,11 @@ export default Login = () => {
   const [password, setPassword] = useState("");
   const [incorrect, setIncorrect] = useState(false);
   const handleLogin = async () => {
-    await postLogin(username, password, setIncorrect);
+    // await postLogin(username, password, setIncorrect);
 
     router.navigate("/Dashboard");
   };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <View style={styles.container}>
