@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
   gemIcon: {
     height: 20,
     width: 20,
-    alignSelf: "left",
   },
   gemValue: {
     color: "#45B3B0",

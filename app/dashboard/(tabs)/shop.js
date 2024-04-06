@@ -12,7 +12,7 @@ import {
 import Colors from "../../../utils/Colors";
 
 // Each item card on the shop screen.
-const ItemCard = ({i, item }) => (
+const ItemCard = ({ i, item }) => (
   <View key={i} style={styles.itemContainer}>
     <Image
       style={{ width: 60, height: 60, marginLeft: 25 }}
