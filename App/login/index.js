@@ -3,6 +3,7 @@ import Colors from "../../utils/Colors";
 import { TextInput } from "react-native-web";
 import { Link } from "expo-router";
 import postLogin from "../../utils/postLogin";
+import { useState } from "react";
 
 export default Login = () => {
   const [username, setUsername] = useState("");
@@ -11,7 +12,7 @@ export default Login = () => {
     const res = postLogin(username, password);
     if (res === "Password incorrect") {
     }
-    router.replace("/home");
+    router.navigate("/home");
   };
   return (
     <View style={styles.container}>

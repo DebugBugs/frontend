@@ -8,11 +8,11 @@ import postSignup from "../../utils/postSignup";
 export default Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const handleSignup = async () => {
-    const res = postSignup(username, password);
-    if (res === "Username already taken") {
-    }
-    router.replace("/home");
+  const handleSignup = () => {
+    // const res = postSignup(username, password);
+    // if (res === "Username already taken") {
+    // }
+    router.replace("/Signup/appliances");
   };
 
   return (
@@ -42,7 +42,7 @@ export default Signup = () => {
         <Link style={{ marginTop: 10, marginBottom: 20 }} href={"/Login"}>
           <Text>Already have an account? Login!</Text>
         </Link>
-        <TouchableOpacity onPressed={handleSignup} style={styles.confirm}>
+        <TouchableOpacity onPress={handleSignup} style={styles.confirm}>
           <Text
             style={{
               width: 230,
@@ -52,7 +52,7 @@ export default Signup = () => {
               fontWeight: 800,
             }}
           >
-            Sign Up
+            Next
           </Text>
         </TouchableOpacity>
       </View>
