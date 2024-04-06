@@ -108,6 +108,9 @@ const Home = (props) => {
         </CardView>
 
         <CardView title="Goals">
+          <TouchableOpacity onPress={setGoals(getGoals())}>
+            <Text>Refresh Goals</Text>
+          </TouchableOpacity>
           {goals.length > 0 ? (
             goals.map((goal) => (
               <View style={styles.goalItem} key={goal.id}>
