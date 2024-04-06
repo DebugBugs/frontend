@@ -1,16 +1,8 @@
-import {
-  Button,
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import Colors from "../utils/Colors";
 import { Link } from "expo-router";
 
-const LoginSignupPage = () => {
+const IndexPage = () => {
   return (
     <View style={styles.container}>
       <View style={styles.imagecontainer}>
@@ -27,7 +19,7 @@ const LoginSignupPage = () => {
         <Text style={{ fontSize: 20, marginBottom: 30, color: Colors.GREY }}>
           Ready to claim your victory in Viridis?
         </Text>
-        <Link href={"/home"} style={styles.button}>
+        <Link href={"/Signup"} style={styles.button}>
           <Pressable>
             <Text
               style={{
@@ -85,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginSignupPage;
+export default IndexPage;
