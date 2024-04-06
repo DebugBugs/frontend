@@ -49,7 +49,7 @@ export default Signup = () => {
               fontSize: 24,
               color: Colors.GREY,
               textAlign: "center",
-              fontWeight: 800,
+              fontWeight: "800",
             }}
           >
             Next

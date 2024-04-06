@@ -1,4 +1,4 @@
-import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View, Button } from "react-native";
 import Colors from "../utils/Colors";
 import { Link } from "expo-router";
 
@@ -14,7 +14,7 @@ const IndexPage = () => {
       <View style={styles.subcontainer}>
         <Text style={styles.introtext}>
           Battle with your neighbours to{" "}
-          <Text style={{ fontWeight: 700 }}>conserve the most energy!</Text>
+          <Text style={{ fontWeight: "700" }}>conserve the most energy!</Text>
         </Text>
         <Text style={{ fontSize: 20, marginBottom: 30, color: Colors.GREY }}>
           Ready to claim your victory in Viridis?
@@ -25,7 +25,7 @@ const IndexPage = () => {
               style={{
                 textAlign: "center",
                 fontSize: 24,
-                fontWeight: 700,
+                fontWeight: "700",
               }}
             >
               Let's get started
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   introtext: {
     fontSize: 30,
-    fontWeight: 400,
+    fontWeight: "400",
     color: Colors.GREY,
     textAlign: "center",
     marginBottom: 20,
