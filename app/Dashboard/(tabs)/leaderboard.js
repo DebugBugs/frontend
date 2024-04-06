@@ -79,6 +79,18 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
   },
+  badge: {
+    borderRadius: "100%",
+    height: 20,
+    width: 20,
+    position: "absolute",
+    zIndex: 99,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    top: -7,
+    left: -7,
+  },
 });
 
 const users = [
@@ -141,11 +153,23 @@ const leaderBoard = users.map((user, i) => {
           <HealthContainer Health={user.health} />
           <GemContainer Gems={user.gem} />
         </View>
-        <View>
+        <View style={{ position: "relative" }}>
           <Image
             source={require("../../../assets/user.png")}
             style={styles.userProfileFirst}
           />
+          <View
+            style={[
+              styles.badge,
+              {
+                backgroundColor: "#FFD700",
+                height: 25,
+                width: 25,
+              },
+            ]}
+          >
+            <Text>{i + 1}</Text>
+          </View>
         </View>
       </View>
     );
@@ -157,11 +181,19 @@ const leaderBoard = users.map((user, i) => {
           <HealthContainer Health={user.health} />
           <GemContainer Gems={user.gem} />
         </View>
-        <View>
+        <View style={{ position: "relative" }}>
           <Image
             source={require("../../../assets/user.png")}
             style={styles.userProfileSecond}
           />
+          <View
+            style={[
+              styles.badge,
+              { backgroundColor: "#C0C0C0", height: 22.5, width: 22.5 },
+            ]}
+          >
+            <Text>{i + 1}</Text>
+          </View>
         </View>
       </View>
     );
@@ -173,11 +205,19 @@ const leaderBoard = users.map((user, i) => {
           <HealthContainer Health={user.health} />
           <GemContainer Gems={user.gem} />
         </View>
-        <View>
+        <View style={{ position: "relative" }}>
           <Image
             source={require("../../../assets/user.png")}
             style={styles.userProfileThird}
           />
+          <View
+            style={[
+              styles.badge,
+              { backgroundColor: "#CD7F32", height: 20, width: 20 },
+            ]}
+          >
+            <Text>{i + 1}</Text>
+          </View>
         </View>
       </View>
     );

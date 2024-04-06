@@ -22,7 +22,7 @@ export default function HealthContainer(props) {
           style={{
             position: "absolute",
             top: 0,
-            right: 55,
+            right: "40%",
             zIndex: 99,
             color: "#fff",
           }}
