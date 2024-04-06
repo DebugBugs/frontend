@@ -1,8 +1,14 @@
 import { Link, router } from "expo-router";
-import { StyleSheet, Switch, Text, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Switch,
+  Text,
+  TouchableOpacity,
+  View,
+  TextInput,
+} from "react-native";
 import Colors from "../../utils/Colors";
 import { useState } from "react";
-import { TextInput } from "react-native-web";
 import postAppliances from "../../utils/postAppliances";
 
 export default Appliances = () => {

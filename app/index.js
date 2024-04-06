@@ -1,6 +1,7 @@
-import { Image, Pressable, StyleSheet, Text, View, Button } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import Colors from "../utils/Colors";
-import { Link } from "expo-router";
+import { router } from "expo-router";
+import { TouchableOpacity } from "react-native";
 
 const IndexPage = () => {
   return (
@@ -16,22 +17,15 @@ const IndexPage = () => {
           Battle with your neighbours to{" "}
           <Text style={{ fontWeight: "700" }}>conserve the most energy!</Text>
         </Text>
-        <Text style={{ fontSize: 20, marginBottom: 30, color: Colors.GREY }}>
+        <Text style={styles.victory}>
           Ready to claim your victory in Viridis?
         </Text>
-        <Link href={"/Signup"} style={styles.button}>
-          <Pressable>
-            <Text
-              style={{
-                textAlign: "center",
-                fontSize: 24,
-                fontWeight: "700",
-              }}
-            >
-              Let's get started
-            </Text>
-          </Pressable>
-        </Link>
+        <TouchableOpacity
+          onPress={() => router.navigate("/Signup")}
+          style={styles.button}
+        >
+          <Text style={styles.started}>Let's get started</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -45,11 +39,17 @@ const styles = StyleSheet.create({
     padding: 50,
   },
   introtext: {
+    width: 350,
     fontSize: 30,
     fontWeight: "400",
     color: Colors.GREY,
     textAlign: "center",
     marginBottom: 20,
+  },
+  victory: {
+    fontSize: 20,
+    marginBottom: 30,
+    color: Colors.GREY,
   },
   image: {
     width: 250,
@@ -74,6 +74,11 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingLeft: 20,
     paddingRight: 20,
+  },
+  started: {
+    textAlign: "center",
+    fontSize: 24,
+    fontWeight: "700",
   },
 });
 

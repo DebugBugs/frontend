@@ -1,6 +1,12 @@
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import Colors from "../../utils/Colors";
-import { TextInput } from "react-native-web";
 import { Link, router } from "expo-router";
 import { useState } from "react";
 import postSignup from "../../utils/postSignup";
