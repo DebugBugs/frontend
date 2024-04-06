@@ -1,61 +1,108 @@
-import {
-  Button,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  ScrollView,
-} from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
+import CardView from "../../../components/CardView";
+import HealthContainer from "../../../components/HealthContainer";
+import GemContainer from "../../../components/GemContainer";
+import { LineChart } from "react-native-chart-kit";
 import Colors from "../../../utils/Colors";
+import NavBar from "../../../components/NavBar";
 
-const App = () => {
+const Graph = () => {
+  const chartConfig = {
+    backgroundGradientFrom: "rgb(224, 242, 241)",
+    backgroundGradientTo: "rgb(224, 242, 241)",
+    color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+    strokeWidth: 3, // optional, default 3
+    barPercentage: 0.5,
+  };
+  const data = {
+    labels: ["-7", "-6", "-5", "-4", "-3", "-2", "Yest.", "Today"],
+    datasets: [
+      {
+        data: [20, 45, 28, 80, 99, 43],
+        color: (opacity = 1) => `rgba(217, 57, 43, ${opacity})`, // optional
+        strokeWidth: 2, // optional
+      },
+    ],
+    legend: ["Health"], // optional
+  };
+
   return (
-    <SafeAreaView style={{ marginTop: 30, paddingHorizontal: 10 }}>
-      <ScrollView style={{}}>
-        <View style={styles.subcontainer}>
-          <Text>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus,
-            aliquam reprehenderit? Error sint assumenda nemo repellat earum.
-            Facilis omnis nisi consequatur incidunt deleniti sapiente debitis
-            placeat aliquid? Illum, repellendus odit?
-          </Text>
-        </View>
-        <View style={styles.subcontainer1}>
-          <Text>2</Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <View style={{ alignItems: "center" }}>
+      <LineChart
+        backgroundColor={Colors.PRIMARY}
+        data={data}
+        width={600}
+        height={220}
+        chartConfig={chartConfig}
+      />
+    </View>
+  );
+};
+
+const Home = (props) => {
+  // const userName = String(props.username)
+  // const Health = String(props.Health)
+  // const Gems = String(props.Gems)
+
+  const userName = "Jon";
+  const profileImg = "./assets/user.png";
+  const Health = 99;
+  const Gems = 1000;
+
+  const leaderboard = [
+    {
+      userName: "Name1",
+      id: 1,
+      imgUri: "",
+      health: 98,
+      diamond: 999,
+      score: 9999,
+    },
+
+    {
+      userName: "Name2",
+      id: 2,
+      imgUri: "",
+      health: 90,
+      diamond: 92,
+      score: 9989,
+    },
+
+    {
+      userName: "Name3",
+      id: 3,
+      imgUri: "",
+      health: 82,
+      diamond: 98,
+      score: 9983,
+    },
+  ];
+
+  return (
+    <ScrollView>
+      <View style={styles.homeContainer}>
+        <CardView title={"Welcome " + userName}>
+          <HealthContainer Health={Health}></HealthContainer>
+          <GemContainer Gems={Gems}></GemContainer>
+        </CardView>
+
+        <CardView title={"Leaderboard"}></CardView>
+
+        <CardView title={"Energy Usage"}>
+          <Graph style={{ width: "100%" }} />
+        </CardView>
+
+        <CardView title="Featured Items"></CardView>
+
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
-  subcontainer: {
-    backgroundColor: Colors.PRIMARY,
-    display: "flex",
-    alignItems: "center",
-    fontSize: 27,
-    textAlign: "center",
-    justifyContent: "center",
-    height: 300,
-    width: "100%",
-    borderRadius: 30,
-    padding: 30,
-    marginTop: 30,
-  },
-  subcontainer1: {
-    backgroundColor: Colors.PRIMARY,
-    display: "flex",
-    alignItems: "center",
-    fontSize: 27,
-    textAlign: "center",
-    justifyContent: "center",
-    height: 500,
-    width: "100%",
-    borderRadius: 30,
-    padding: 30,
-    marginTop: 30,
+  homeContainer: {
+    padding: 15,
   },
 });
 
-export default App;
+export default Home;

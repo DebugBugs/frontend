@@ -4,4 +4,7 @@ export default {
   SECONDARY: "#45B3B0",
   WHITE: "#FFFFFF",
   GREY: "#5C6C6B",
+  D_PRIMARY: "#45B3B0",
+  D_SECONDARY: "#E0F2F1",
+  D_GREEN: "#A7D9AF",
 };
