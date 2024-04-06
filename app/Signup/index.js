@@ -39,7 +39,7 @@ export default Signup = () => {
           style={styles.textinput}
           onChangeText={(p) => setPassword(p)}
         ></TextInput>
-        <Link style={{ marginTop: 10, marginBottom: 20 }} href={"/Login"}>
+        <Link style={{ marginTop: 10, marginBottom: 20 }} href={"/Dashboard"}>
           <Text>Already have an account? Login!</Text>
         </Link>
         <TouchableOpacity onPress={handleSignup} style={styles.confirm}>

@@ -11,14 +11,14 @@ export default Appliances = () => {
   const [fridge, setFridge] = useState(false);
   const [others, setOthers] = useState("");
   const handleAppliances = () => {
-    postAppliances(
-      localStorage.getItem("username"),
-      aircon,
-      laundry,
-      fridge,
-      others
-    );
-    router.navigate("/home");
+    // postAppliances(
+    //   localStorage.getItem("username"),
+    //   aircon,
+    //   laundry,
+    //   fridge,
+    //   others
+    // );
+    router.navigate("/Dashboard");
   };
   return (
     <View style={styles.container}>
@@ -93,7 +93,7 @@ export default Appliances = () => {
           style={styles.textinput}
           onChangeText={(p) => setOthers(p)}
         ></TextInput>
-        <TouchableOpacity onPressed={handleAppliances} style={styles.confirm}>
+        <TouchableOpacity onPress={handleAppliances} style={styles.confirm}>
           <Text
             style={{
               width: 230,

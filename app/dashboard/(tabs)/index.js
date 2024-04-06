@@ -7,7 +7,7 @@ import {
   SafeAreaView,
   ScrollView,
 } from "react-native";
-import Colors from "../../utils/Colors";
+import Colors from "../../../utils/Colors";
 
 const App = () => {
   return (
