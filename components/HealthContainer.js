@@ -9,7 +9,7 @@ export default function HealthContainer(props) {
         width: "100%",
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "flex-start",
         alignItems: "center",
       }}
     >
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     height: 15,
     borderRadius: 7,
     position: "relative",
+    marginLeft: 15,
   },
   currentHealth: {
     backgroundColor: Colors.D_GREEN,

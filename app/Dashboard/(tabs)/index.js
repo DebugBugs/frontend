@@ -67,22 +67,27 @@ const Home = (props) => {
   const [userName, setUsername] = useState("...");
   // getUsername(setUsername);
   const profileImg = "./assets/user.png";
-  const [goals, setGoals] = useState(initalGoals);
+  const [goals, setGoals] = useState([]);
   const [Health, setHealth] = useState(99);
-  const [Gems, setGems] = useState(1000);
+  const [Gems, setGems] = useState(99);
   const [goalsLoading, setGoalsLoading] = useState(false);
+  const [timedOut, setTimedOut] = useState(false);
   getUser(setHealth, setGems);
 
-  useEffect(() => {
-    goals.length > 0 && setGoalsLoading(false);
-  }, [goals]);
+  const timeOut = () => {
+    setTimedOut(true);
+    setTimeout(() => {
+      setTimedOut(false);
+      console.log("over!");
+    }, 10000);
+  };
 
   return (
     <ScrollView>
       <View style={styles.homeContainer}>
         <CardView title={"Welcome " + userName}>
-          <HealthContainer Health={Health}></HealthContainer>
-          <GemContainer Gems={Gems}></GemContainer>
+          <HealthContainer Health={Health} />
+          <GemContainer Gems={Gems} />
         </CardView>
 
         <CardView title="Goals">
@@ -96,7 +101,9 @@ const Home = (props) => {
               console.log("newGoalsArr", newGoalsArr);
               setGoals((prev) => prev.concat(newGoalsArr));
               setGoalsLoading(false);
+              timeOut();
             }}
+            disabled={goalsLoading || timedOut}
           >
             <Text>Add More Goals {goalsLoading && "Loading..."}</Text>
           </TouchableOpacity>

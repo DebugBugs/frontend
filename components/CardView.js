@@ -11,7 +11,7 @@ export default function CardView(props) {
 
 const styles = StyleSheet.create({
   cardView: {
-    width: "auto",
+    width: "100%",
     height: "auto",
     borderRadius: 18,
     backgroundColor: "#E0F2F1",
