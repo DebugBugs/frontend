@@ -110,7 +110,7 @@ const Graph = () => {
     datasets: [
       {
         data: [20, 45, 28, 80, 99, 43],
-        color: (opacity = 1) => `rgba(217, 57, 43, ${opacity})`, // optional
+        color: (opacity = 1) => `${Colors.D_PRIMARY}`, // optional
         strokeWidth: 2, // optional
       },
     ],

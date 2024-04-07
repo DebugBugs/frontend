@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
+import { useEffect } from "react";
 import CardView from "../../../components/CardView";
 import HealthContainer from "../../../components/HealthContainer";
 import GemContainer from "../../../components/GemContainer";
@@ -66,38 +67,15 @@ const Home = (props) => {
   const [userName, setUsername] = useState("...");
   // getUsername(setUsername);
   const profileImg = "./assets/user.png";
-  const [Goals, setGoals] = useState([]);
+  const [goals, setGoals] = useState(initalGoals);
   const [Health, setHealth] = useState(99);
   const [Gems, setGems] = useState(1000);
+  const [goalsLoading, setGoalsLoading] = useState(false);
   getUser(setHealth, setGems);
-  const leaderboard = [
-    {
-      userName: "Name1",
-      id: 1,
-      imgUri: "",
-      health: 98,
-      diamond: 999,
-      score: 9999,
-    },
 
-    {
-      userName: "Name2",
-      id: 2,
-      imgUri: "",
-      health: 90,
-      diamond: 92,
-      score: 9989,
-    },
-
-    {
-      userName: "Name3",
-      id: 3,
-      imgUri: "",
-      health: 82,
-      diamond: 98,
-      score: 9983,
-    },
-  ];
+  useEffect(() => {
+    goals.length > 0 && setGoalsLoading(false);
+  }, [goals]);
 
   return (
     <ScrollView>
@@ -108,8 +86,19 @@ const Home = (props) => {
         </CardView>
 
         <CardView title="Goals">
-          <TouchableOpacity onPress={setGoals(getGoals())}>
-            <Text>Refresh Goals</Text>
+          <TouchableOpacity
+            onPress={async () => {
+              setGoalsLoading(true);
+              const goalsArr = await getGoals();
+              const newGoalsArr = goalsArr.map((g, i) => {
+                return { goal: g, id: goals.length + i + 1 };
+              });
+              console.log("newGoalsArr", newGoalsArr);
+              setGoals((prev) => prev.concat(newGoalsArr));
+              setGoalsLoading(false);
+            }}
+          >
+            <Text>Add More Goals {goalsLoading && "Loading..."}</Text>
           </TouchableOpacity>
           {goals.length > 0 ? (
             goals.map((goal) => (

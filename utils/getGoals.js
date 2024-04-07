@@ -20,6 +20,12 @@ export default getGoals = async () => {
     ],
     model: "gpt-3.5-turbo",
   });
-
-  console.log(JSON.parse(completion.choices[0].message.content));
+  const res = JSON.parse(completion.choices[0].message.content);
+  console.log(res);
+  console.log(typeof res);
+  // res = ["goal1", "goal2", "goal3"];
+  // console.log("====================================");
+  // console.log(res);
+  // console.log("====================================");
+  return res;
 };
