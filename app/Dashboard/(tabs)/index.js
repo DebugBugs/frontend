@@ -71,16 +71,11 @@ const Home = (props) => {
   const [Health, setHealth] = useState(99);
   const [Gems, setGems] = useState(99);
   const [goalsLoading, setGoalsLoading] = useState(false);
-  const [timedOut, setTimedOut] = useState(false);
   getUser(setHealth, setGems);
 
-  const timeOut = () => {
-    setTimedOut(true);
-    setTimeout(() => {
-      setTimedOut(false);
-      console.log("over!");
-    }, 10000);
-  };
+  useEffect(() => {
+    goals.length > 0 && setGoalsLoading(false);
+  }, [goals]);
 
   return (
     <ScrollView>
@@ -93,17 +88,19 @@ const Home = (props) => {
         <CardView title="Goals">
           <TouchableOpacity
             onPress={async () => {
-              setGoalsLoading(true);
-              const goalsArr = await getGoals();
-              const newGoalsArr = goalsArr.map((g, i) => {
-                return { goal: g, id: goals.length + i + 1 };
-              });
-              console.log("newGoalsArr", newGoalsArr);
-              setGoals((prev) => prev.concat(newGoalsArr));
-              setGoalsLoading(false);
-              timeOut();
+              // setGoalsLoading(true);
+              // const goalsArr = await getGoals();
+              // const newGoalsArr =
+              //   goalsArr.length > 0
+              //     ? goalsArr.map((g, i) => {
+              //         return { goal: g, id: goals.length + i + 1 };
+              //       })
+              //     : setGoalsLoading(false);
+              // console.log("newGoalsArr", newGoalsArr);
+              // setGoals((prev) => prev.concat(newGoalsArr));
+              setGoals(initalGoals);
             }}
-            disabled={goalsLoading || timedOut}
+            disabled={goalsLoading}
           >
             <Text>Add More Goals {goalsLoading && "Loading..."}</Text>
           </TouchableOpacity>
