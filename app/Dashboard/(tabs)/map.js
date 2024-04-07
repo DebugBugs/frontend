@@ -10,7 +10,7 @@ export default LeaderBoard = () => {
   getUsername(setUsername);
   return (
     <View>
-      <TopBar />
+      <TopBar userName="user" health="99" gem="99999" />
       <Text style={styles.title}>Map</Text>
       <MapView
         style={{ width: "100%", height: "80%" }}

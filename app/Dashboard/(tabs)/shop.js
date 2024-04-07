@@ -64,8 +64,8 @@ const Shop = () => {
       >
         Shop
       </Text>
-      {items.map((item) => (
-        <ItemCard item={item}></ItemCard>
+      {items.map((item, i) => (
+        <ItemCard item={item} key={i}></ItemCard>
       ))}
     </ScrollView>
   );
